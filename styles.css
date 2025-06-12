@@ -1,0 +1,470 @@
+/* SMOOTH SCROLL BEHAVIOR */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* Offset for fixed header */
+}
+
+/* FADE-IN ANIMATION (from your original file, now in its proper place) */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* SCROLL TO TOP BUTTON (from your original file) */
+#scrollTopBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #4f46e5; /* indigo-600 */
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 50;
+  border: none;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(10px);
+}
+#scrollTopBtn.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* -- NEW & REFINED STYLES -- */
+
+/* ANIMATED BACKGROUND BLOBS */
+.blob-c {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px); /* Increased blur for a softer look */
+    opacity: 0.4;
+}
+
+.blob.one {
+    width: 400px;
+    height: 400px;
+    background: #a5b4fc; /* indigo-300 */
+    top: -50px;
+    left: -100px;
+    animation: wave 15s infinite alternate;
+}
+
+.blob.two {
+    width: 300px;
+    height: 300px;
+    background: #f9a8d4; /* pink-300 */
+    bottom: -50px;
+    right: -100px;
+    animation: wave 12s infinite alternate;
+    animation-delay: -3s;
+}
+
+@keyframes wave {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(50px, -20px) scale(1.1); }
+    100% { transform: translate(-50px, 30px) scale(0.9); }
+}
+
+/* TYPED TEXT CURSOR */
+#typed-text + .typed-cursor {
+  color: #4f46e5; /* indigo-600 */
+  font-weight: 600;
+  animation: blink 0.7s infinite;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* NAVIGATION LINK STYLING */
+.nav-link {
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.3s;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: #4f46e5; /* indigo-600 */
+    transition: width 0.3s ease;
+}
+.nav-link:hover::after, .nav-link:focus::after {
+    width: 100%;
+}
+.mobile-nav-link {
+    display: block;
+    padding: 12px 16px;
+    margin: 4px 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #374151; /* gray-700 */
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
+.mobile-nav-link:hover, .mobile-nav-link:focus {
+    background-color: #e0e7ff; /* indigo-100 */
+    color: #4338ca; /* indigo-700 */
+}
+
+
+/* BUTTONS (UTILITY CLASSES) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+.btn-primary {
+  background-color: #4f46e5; /* indigo-600 */
+  color: white;
+}
+.btn-primary:hover {
+  background-color: #4338ca; /* indigo-700 */
+}
+.btn-secondary {
+  background-color: #e5e7eb; /* gray-200 */
+  color: #1f2937; /* gray-800 */
+}
+.btn-secondary:hover {
+  background-color: #d1d5db; /* gray-300 */
+}
+
+/* PROJECT CARD STYLING */
+.project-card {
+  display: block;
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden; /* Important for child element transitions */
+  text-decoration: none;
+}
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+.tech-tag {
+  background-color: #e0e7ff; /* indigo-100 */
+  color: #3730a3; /* indigo-800 */
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 9999px;
+}
+
+/* CUSTOM FORM STYLING */
+.form-input {
+  width: 100%;
+  border: 1px solid #d1d5db; /* gray-300 */
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #f9fafb; /* gray-50 */
+}
+.form-input:focus {
+  outline: none;
+  border-color: #4f46e5; /* indigo-600 */
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+.form-label {
+  position: absolute;
+  left: 1rem;
+  top: 0.85rem;
+  color: #6b7280; /* gray-500 */
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+.form-input:focus + .form-label,
+.form-input:not(:placeholder-shown) + .form-label {
+  top: -0.65rem;
+  left: 0.75rem;
+  font-size: 0.75rem;
+  color: #4f46e5; /* indigo-600 */
+  background-color: white;
+  padding: 0 4px;
+}
+.form-error {
+  display: none; /* Initially hidden */
+  color: #dc2626; /* red-600 */
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+/* ... (all your existing CSS from the previous step remains here) ... */
+
+/* -- NEW STYLES FOR SKILLS SECTION -- */
+
+.skill-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.skill-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.skill-icon {
+    width: 48px; /* 3rem */
+    height: 48px; /* 3rem */
+}
+
+.skill-card span {
+    font-weight: 600; /* semibold */
+    color: #374151; /* gray-700 */
+}
+.border-2-2 {
+    border-width: 2px;
+}
+
+/* Timeline item alignment for desktop */
+@media (min-width: 768px) {
+    .right-timeline {
+        justify-content: flex-end;
+    }
+    .left-timeline {
+        justify-content: flex-start;
+    }
+    /* Add the arrow pointer to the cards */
+    .right-timeline div:last-child::before {
+        content: '';
+        position: absolute;
+        top: 20px;
+        left: -15px;
+        border-width: 8px;
+        border-style: solid;
+        border-color: transparent white transparent transparent;
+    }
+    .left-timeline div:last-child::before {
+        content: '';
+        position: absolute;
+        top: 20px;
+        right: -15px;
+        border-width: 8px;
+        border-style: solid;
+        border-color: transparent transparent transparent white;
+    }
+}
+
+
+/* Mobile styles for the timeline */
+@media (max-width: 767px) {
+    .wrap {
+        padding: 40px 10px;
+    }
+    .wrap .border-2-2 {
+        left: 2rem; /* Move line to the left */
+    }
+    .right-timeline, .left-timeline {
+        justify-content: flex-start; /* Align all items to the left */
+        flex-direction: row; /* Ensure normal row direction */
+    }
+    .right-timeline .order-1, .left-timeline .order-1 {
+        width: calc(100% - 4rem); /* Adjust width for content */
+    }
+    .right-timeline .z-20, .left-timeline .z-20 {
+        order: 0; /* Make the circle appear first */
+        margin-right: 1.25rem;
+    }
+    .right-timeline div:last-child, .left-timeline div:last-child {
+        order: 1; /* Make the content appear second */
+    }
+    /* Hide the desktop arrows on mobile */
+    .right-timeline div:last-child::before, .left-timeline div:last-child::before {
+        display: none;
+    }
+}
+.contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem; /* UPDATED: This is now 16px, giving more space */
+    font-weight: 500;
+    color: #4b5563; /* gray-600 */
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+.contact-link:hover, .contact-link:focus {
+    color: #6366f1; /* indigo-500 */
+}
+.contact-link span {
+    transition: transform 0.3s ease;
+}
+.contact-link.group:hover span {
+    transform: translateX(3px);
+}
+.contact-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+/* Form Styling for Dark Background */
+.dark-form-input {
+  width: 100%;
+  border: 1px solid #4b5563; /* gray-600 */
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #374151; /* gray-700 */
+  color: #f3f4f6; /* gray-100 */
+}
+.dark-form-input:focus {
+  outline: none;
+  border-color: #6366f1; /* indigo-500 */
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+}
+
+.dark-form-label {
+  position: absolute;
+  left: 1rem;
+  top: 0.85rem;
+  color: #9ca3af; /* gray-400 */
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+.dark-form-input:focus + .dark-form-label,
+.dark-form-input:not(:placeholder-shown) + .dark-form-label {
+  top: -0.65rem;
+  left: 0.75rem;
+  font-size: 0.75rem;
+  color: #818cf8; /* indigo-400 */
+  background-color: #374151; /* gray-700 */
+  padding: 0 4px;
+}
+
+/* Keep the error message style the same */
+.form-error {
+  display: none;
+  color: #f87171; /* red-400, better contrast on dark bg */
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+.contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem; /* 12px */
+    font-weight: 500;
+    color: #4b5563; /* gray-600 */
+    transition: color 0.3s ease;
+    text-decoration: none; /* Ensure no underline */
+}
+.contact-link:hover, .contact-link:focus {
+    color: #4f46e5; /* indigo-600 */
+}
+.contact-link span {
+    transition: transform 0.3s ease;
+}
+.contact-link.group:hover span {
+    transform: translateX(3px);
+}
+.contact-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+/* -- ORIGINAL FORM STYLES (ensure these exist) -- */
+
+.form-input {
+  width: 100%;
+  border: 1px solid #d1d5db; /* gray-300 */
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #f9fafb; /* gray-50 */
+}
+.form-input:focus {
+  outline: none;
+  border-color: #4f46e5; /* indigo-600 */
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+.form-label {
+  position: absolute;
+  left: 1rem;
+  top: 0.85rem;
+  color: #6b7280; /* gray-500 */
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+.form-input:focus + .form-label,
+.form-input:not(:placeholder-shown) + .form-label {
+  top: -0.65rem;
+  left: 0.75rem;
+  font-size: 0.75rem;
+  color: #4f46e5; /* indigo-600 */
+  background-color: white; /* This is important for the label to cover the border */
+  padding: 0 4px;
+}
+
+.form-error {
+  display: none;
+  color: #dc2626; /* red-600 */
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+/* ... (all your existing CSS remains here) ... */
+
+
+/* -- NEW STYLES FOR MODERN TRANSITIONS -- */
+
+/* Style for the active navigation link */
+.nav-link.active {
+    color: #4f46e5; /* indigo-600 */
+    font-weight: 700; /* bold */
+}
+
+/* This keeps the underline visible for the active link */
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* New style for the header when the page is scrolled */
+#mainHeader.header-scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
