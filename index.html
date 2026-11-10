@@ -3,10 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ahmed Mhiri | Full Stack Developer</title>
-  <meta name="description" content="Ahmed Mhiri — Informatik Student at FH Dortmund. Full Stack Developer specializing in Angular, Spring Boot and modern web apps." />
+  <title>Ahmed Mhiri — Full Stack Developer</title>
+  <meta name="description" content="Ahmed Mhiri — Informatik Student at FH Dortmund. Full Stack Developer specializing in Angular, Spring Boot and modern web applications." />
 
-  <!-- Fonts -->
+  <meta property="og:title" content="Ahmed Mhiri — Full Stack Developer" />
+  <meta property="og:description" content="Full Stack Developer specializing in Angular, Spring Boot and modern web applications." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assests/photo.jpg" />
+  <meta name="theme-color" content="#4f46e5" />
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%234f46e5'/><text x='50' y='68' font-size='58' font-family='Inter,sans-serif' font-weight='900' fill='white' text-anchor='middle'>A</text></svg>" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -24,407 +31,49 @@
       },
     }
   </script>
+
   <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-  <style>
-    :root {
-      --brand: #4f46e5;
-      --brand-dark: #4338ca;
-      --brand-light: #eef2ff;
-    }
-
-    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-
-    body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    /* ---------- Text utilities ---------- */
-    .text-gradient {
-      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 55%, #ec4899 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .section-eyebrow {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #4f46e5;
-      margin-bottom: 0.75rem;
-    }
-
-    .section-title {
-      font-size: 2.25rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      color: #0f172a;
-    }
-    @media (min-width: 768px) { .section-title { font-size: 3rem; } }
-
-    .section-subtitle {
-      font-size: 1.05rem;
-      color: #64748b;
-      margin-top: 0.75rem;
-      max-width: 36rem;
-    }
-
-    /* ---------- Buttons ---------- */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.75rem;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: all 0.25s ease;
-      cursor: pointer;
-      border: none;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
-      color: #fff;
-      box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.3);
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 22px 0 rgba(79, 70, 229, 0.4);
-    }
-    .btn-secondary {
-      background: #fff;
-      color: #1e293b;
-      border: 1.5px solid #e2e8f0;
-    }
-    .btn-secondary:hover {
-      border-color: #4f46e5;
-      color: #4f46e5;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.12);
-    }
-
-    /* ---------- Nav ---------- */
-    .nav-link {
-      position: relative;
-      padding: 0.5rem 0;
-      color: #334155;
-      font-weight: 500;
-      transition: color 0.25s ease;
-    }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 0; height: 2px;
-      background: linear-gradient(90deg, #4f46e5, #7c3aed);
-      transition: width 0.3s ease;
-    }
-    .nav-link:hover { color: #4f46e5; }
-    .nav-link:hover::after { width: 100%; }
-
-    .mobile-nav-link {
-      display: block;
-      padding: 0.85rem 1rem;
-      border-radius: 0.65rem;
-      font-weight: 500;
-      color: #334155;
-      transition: all 0.2s ease;
-    }
-    .mobile-nav-link:hover {
-      background: #eef2ff;
-      color: #4f46e5;
-      padding-left: 1.25rem;
-    }
-
-    /* ---------- Hero blobs ---------- */
-    .blob-c {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-    }
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.55;
-      animation: blobFloat 8s ease-in-out infinite;
-    }
-    .blob.one {
-      width: 380px; height: 380px;
-      background: #a5b4fc;
-      top: -60px; left: -80px;
-    }
-    .blob.two {
-      width: 420px; height: 420px;
-      background: #ddd6fe;
-      bottom: -80px; right: -80px;
-      animation-delay: 2s;
-    }
-    @keyframes blobFloat {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      33%      { transform: translate(30px, -50px) scale(1.08); }
-      66%      { transform: translate(-20px, 20px) scale(0.94); }
-    }
-
-    /* ---------- Stats ---------- */
-    .stat-number {
-      font-size: 1.85rem;
-      font-weight: 800;
-      color: #0f172a;
-      letter-spacing: -0.02em;
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: #64748b;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-top: 0.4rem;
-    }
-
-    /* ---------- Timeline ---------- */
-    .timeline-dot {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 3rem; height: 3rem;
-      border-radius: 9999px;
-      background: linear-gradient(135deg, #4f46e5, #7c3aed);
-      color: #fff;
-      box-shadow: 0 8px 20px -6px rgba(79, 70, 229, 0.5);
-      flex-shrink: 0;
-      position: relative;
-      z-index: 10;
-    }
-    .timeline-dot.future {
-      background: linear-gradient(135deg, #10b981, #059669);
-      box-shadow: 0 8px 20px -6px rgba(16, 185, 129, 0.5);
-    }
-
-    /* ---------- Skill cards ---------- */
-    .skill-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      padding: 1.25rem 0.75rem;
-      background: #fff;
-      border: 1.5px solid #f1f5f9;
-      border-radius: 0.9rem;
-      font-weight: 600;
-      font-size: 0.82rem;
-      color: #334155;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: default;
-      text-align: center;
-    }
-    .skill-card:hover {
-      transform: translateY(-4px);
-      border-color: #c7d2fe;
-      box-shadow: 0 12px 24px -8px rgba(79, 70, 229, 0.2);
-    }
-    .skill-icon { width: 38px; height: 38px; }
-
-    /* ---------- Project cards ---------- */
-    .project-card {
-      display: block;
-      background: #fff;
-      border: 1.5px solid #f1f5f9;
-      border-radius: 1.25rem;
-      overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      text-decoration: none;
-      color: inherit;
-      position: relative;
-    }
-    .project-card:hover {
-      transform: translateY(-6px);
-      border-color: #c7d2fe;
-      box-shadow: 0 24px 48px -16px rgba(79, 70, 229, 0.25);
-    }
-    .project-card .project-image {
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .project-card:hover .project-image {
-      transform: scale(1.08);
-    }
-
-    .tech-tag {
-      display: inline-block;
-      padding: 0.3rem 0.75rem;
-      font-size: 0.72rem;
-      font-weight: 600;
-      background: #eef2ff;
-      color: #4338ca;
-      border-radius: 9999px;
-      letter-spacing: 0.01em;
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .live-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.3rem 0.75rem;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(6px);
-      border-radius: 9999px;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      color: #047857;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    }
-
-    /* ---------- Contact links ---------- */
-    .contact-link {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 1rem 1.25rem;
-      border-radius: 0.75rem;
-      color: #475569;
-      font-weight: 500;
-      font-size: 0.85rem;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    .contact-link:hover {
-      color: #4f46e5;
-      background: #eef2ff;
-      transform: translateY(-2px);
-    }
-    .contact-icon {
-      width: 26px; height: 26px;
-      transition: transform 0.3s ease;
-    }
-    .contact-link:hover .contact-icon { transform: scale(1.15); }
-
-    /* ---------- Form ---------- */
-    .form-input {
-      width: 100%;
-      padding: 1.15rem 1rem 0.55rem 1rem;
-      border: 1.5px solid #e2e8f0;
-      border-radius: 0.75rem;
-      background: #f8fafc;
-      font-size: 1rem;
-      color: #1e293b;
-      transition: all 0.25s ease;
-      font-family: inherit;
-    }
-    .form-input:focus {
-      outline: none;
-      border-color: #4f46e5;
-      background: #fff;
-      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
-    }
-    .form-label {
-      position: absolute;
-      top: 1.05rem;
-      left: 1rem;
-      font-size: 0.95rem;
-      color: #94a3b8;
-      pointer-events: none;
-      transition: all 0.2s ease;
-    }
-    .form-input:focus + .form-label,
-    .form-input:not(:placeholder-shown) + .form-label {
-      top: 0.4rem;
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: #4f46e5;
-    }
-    .form-error {
-      display: none;
-      font-size: 0.75rem;
-      color: #dc2626;
-      margin-top: 0.35rem;
-    }
-
-    /* ---------- Fade-in ---------- */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .delay-200 { transition-delay: 0.15s; }
-
-    /* ---------- Scroll to top ---------- */
-    #scrollTopBtn {
-      position: fixed;
-      bottom: 2rem; right: 2rem;
-      width: 3rem; height: 3rem;
-      border-radius: 9999px;
-      background: #4f46e5;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 6px 20px -4px rgba(79, 70, 229, 0.5);
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      border: none;
-      font-size: 1.1rem;
-      z-index: 999;
-    }
-    #scrollTopBtn.show { opacity: 1; visibility: visible; }
-    #scrollTopBtn:hover { transform: translateY(-4px); background: #4338ca; }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="bg-white text-slate-800 antialiased">
+
+  <div id="scrollProgress" aria-hidden="true"></div>
 
   <div x-data="{
     isModalOpen: false,
     currentProjectImages: [],
     currentImageIndex: 0,
     openModal(images) {
-        this.currentProjectImages = images;
-        this.currentImageIndex = 0;
-        this.isModalOpen = true;
+      this.currentProjectImages = images;
+      this.currentImageIndex = 0;
+      this.isModalOpen = true;
     },
     closeModal() { this.isModalOpen = false; },
     nextImage() { this.currentImageIndex = (this.currentImageIndex + 1) % this.currentProjectImages.length; },
     prevImage() { this.currentImageIndex = (this.currentImageIndex - 1 + this.currentProjectImages.length) % this.currentProjectImages.length; }
   }"
+  x-effect="document.body.style.overflow = isModalOpen ? 'hidden' : ''"
   @keydown.escape.window="closeModal()"
   @keydown.arrow-right.window="isModalOpen && nextImage()"
   @keydown.arrow-left.window="isModalOpen && prevImage()">
 
     <!-- ================= HEADER ================= -->
-    <header id="mainHeader" class="fixed top-0 w-full z-[9999] backdrop-blur-xl bg-white/70 border-b border-slate-200/60 transition-all duration-300">
+    <header id="mainHeader" class="fixed top-0 w-full z-[9999] backdrop-blur-xl bg-white/75 border-b border-slate-200/60 transition-all duration-300">
       <div class="container mx-auto max-w-6xl flex justify-between items-center px-6 py-3.5">
         <a href="#about" class="text-xl font-black tracking-tight text-indigo-600 hover:text-indigo-700 transition">
           AM<span class="text-slate-900">.</span>
         </a>
         <nav>
-          <ul id="navMenu" class="hidden md:flex items-center gap-9 text-sm font-medium">
+          <ul id="navMenu" class="hidden md:flex items-center gap-8 text-sm font-medium">
             <li><a href="#about"    class="nav-link">About</a></li>
             <li><a href="#journey"  class="nav-link">Journey</a></li>
             <li><a href="#skills"   class="nav-link">Skills</a></li>
             <li><a href="#live-work" class="nav-link">Work</a></li>
             <li><a href="#contact"  class="nav-link">Contact</a></li>
           </ul>
-          <button id="menuBtn" class="md:hidden p-2 rounded-lg text-indigo-600 hover:bg-indigo-50 focus:outline-none" aria-label="Toggle menu" aria-controls="mobileMenu" aria-expanded="false">
+          <button id="menuBtn" class="md:hidden p-2 rounded-lg text-indigo-600 hover:bg-indigo-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500" aria-label="Toggle menu" aria-controls="mobileMenu" aria-expanded="false">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
           </button>
         </nav>
@@ -450,22 +99,23 @@
     <main>
 
       <!-- ================= HERO / ABOUT ================= -->
-      <section id="about" class="relative min-h-screen flex items-center pt-28 pb-20 px-4 overflow-hidden">
+      <section id="about" class="relative min-h-screen flex items-center pt-28 pb-24 px-4 overflow-hidden">
+        <div class="dot-grid absolute inset-0 pointer-events-none"></div>
         <div class="blob-c"><div class="blob one"></div><div class="blob two"></div></div>
 
         <div class="container mx-auto max-w-6xl relative z-10">
           <div class="grid md:grid-cols-5 gap-12 lg:gap-16 items-center">
-            <!-- Photo -->
+
+            <!-- Photo with rotating gradient ring -->
             <div class="md:col-span-2 flex justify-center fade-in">
-              <div class="relative">
-                <div class="absolute -inset-6 rounded-full bg-gradient-to-br from-indigo-400 via-violet-400 to-pink-400 opacity-25 blur-3xl"></div>
-                <img src="assests/photo.jpg" alt="Ahmed Mhiri"
-                     class="relative w-64 h-64 md:w-80 md:h-80 rounded-full object-cover shadow-2xl ring-4 ring-white">
+              <div class="photo-wrapper">
+                <div class="photo-ring"></div>
+                <img src="assests/photo.jpg" alt="Ahmed Mhiri" class="photo" />
               </div>
             </div>
 
             <!-- Text -->
-            <div class="md:col-span-3 text-center md:text-left fade-in delay-200">
+            <div class="md:col-span-3 text-center md:text-left fade-in" style="transition-delay:.12s;">
               <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-full text-xs font-semibold mb-5">
                 <span class="relative flex h-2 w-2">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -487,10 +137,10 @@
               </div>
 
               <p class="mt-6 text-slate-600 max-w-xl mx-auto md:mx-0 leading-relaxed">
-                As a passionate full-stack developer, I specialize in creating seamless digital experiences.
-                I enjoy bringing ideas to life — from crafting intuitive user interfaces with Angular to
-                engineering robust backend systems with Spring Boot. Based in the Bochum area, I'm currently
-                seeking opportunities to contribute to innovative projects and grow as a developer.
+                A passionate full-stack developer specializing in seamless digital experiences —
+                from crafting intuitive interfaces with Angular to engineering robust backend
+                systems with Spring Boot. Based near Bochum and currently seeking opportunities
+                to contribute to innovative projects.
               </p>
 
               <div class="mt-7 flex flex-wrap items-center justify-center md:justify-start gap-3">
@@ -508,18 +158,18 @@
                 </a>
               </div>
 
-              <!-- Stats -->
+              <!-- Stats with counters -->
               <div class="mt-10 pt-8 border-t border-slate-200/70 grid grid-cols-3 gap-4 max-w-md mx-auto md:mx-0">
                 <div class="text-center md:text-left">
-                  <div class="stat-number">5th</div>
+                  <div class="stat-number" data-target="5" data-suffix="th">0</div>
                   <div class="stat-label">Semester</div>
                 </div>
                 <div class="text-center md:text-left">
-                  <div class="stat-number">10+</div>
+                  <div class="stat-number" data-target="10" data-suffix="+">0</div>
                   <div class="stat-label">Technologies</div>
                 </div>
                 <div class="text-center md:text-left">
-                  <div class="stat-number">3+</div>
+                  <div class="stat-number" data-target="3" data-suffix="+">0</div>
                   <div class="stat-label">Live Projects</div>
                 </div>
               </div>
@@ -538,7 +188,7 @@
           </div>
 
           <div class="relative">
-            <div class="absolute left-6 top-6 bottom-6 w-px bg-gradient-to-b from-indigo-500 via-indigo-300 to-indigo-100"></div>
+            <div class="timeline-line absolute left-6 top-6 bottom-6 w-px"></div>
 
             <div class="space-y-8">
               <!-- 1 -->
@@ -603,36 +253,33 @@
           </div>
 
           <div class="grid md:grid-cols-3 gap-10">
-            <!-- Frontend -->
             <div class="fade-in">
-              <h3 class="text-sm font-bold uppercase tracking-wider text-indigo-600 mb-4 pb-2 border-b border-slate-100">Frontend</h3>
+              <h3 class="skill-group-title">Frontend</h3>
               <div class="grid grid-cols-2 gap-3">
-                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/angularjs/angularjs-original.svg" alt="Angular" class="skill-icon"><span>Angular</span></div>
-                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React" class="skill-icon"><span>React</span></div>
-                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="TypeScript" class="skill-icon"><span>TypeScript</span></div>
-                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="JavaScript" class="skill-icon"><span>JavaScript</span></div>
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/angularjs/angularjs-original.svg" alt="Angular" class="skill-icon" loading="lazy"><span>Angular</span></div>
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React" class="skill-icon" loading="lazy"><span>React</span></div>
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="TypeScript" class="skill-icon" loading="lazy"><span>TypeScript</span></div>
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="JavaScript" class="skill-icon" loading="lazy"><span>JavaScript</span></div>
               </div>
             </div>
 
-            <!-- Backend -->
-            <div class="fade-in delay-200">
-              <h3 class="text-sm font-bold uppercase tracking-wider text-indigo-600 mb-4 pb-2 border-b border-slate-100">Backend</h3>
+            <div class="fade-in" style="transition-delay:.12s;">
+              <h3 class="skill-group-title">Backend</h3>
               <div class="grid grid-cols-2 gap-3">
-                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/spring/spring-original.svg" alt="Spring Boot" class="skill-icon"><span>Spring Boot</span></div>
-                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="Java" class="skill-icon"><span>Java</span></div>
-                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" class="skill-icon"><span>PostgreSQL</span></div>
-                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" alt="MySQL" class="skill-icon"><span>MySQL</span></div>
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/spring/spring-original.svg" alt="Spring Boot" class="skill-icon" loading="lazy"><span>Spring Boot</span></div>
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="Java" class="skill-icon" loading="lazy"><span>Java</span></div>
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" class="skill-icon" loading="lazy"><span>PostgreSQL</span></div>
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" alt="MySQL" class="skill-icon" loading="lazy"><span>MySQL</span></div>
               </div>
             </div>
 
-            <!-- DevOps -->
-            <div class="fade-in">
-              <h3 class="text-sm font-bold uppercase tracking-wider text-indigo-600 mb-4 pb-2 border-b border-slate-100">DevOps & Tools</h3>
+            <div class="fade-in" style="transition-delay:.24s;">
+              <h3 class="skill-group-title">DevOps & Tools</h3>
               <div class="grid grid-cols-2 gap-3">
-                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="Docker" class="skill-icon"><span>Docker</span></div>
-                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" class="skill-icon"><span>AWS</span></div>
-                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/terraform/terraform-original.svg" alt="Terraform" class="skill-icon"><span>Terraform</span></div>
-                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" alt="Git" class="skill-icon"><span>Git</span></div>
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="Docker" class="skill-icon" loading="lazy"><span>Docker</span></div>
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" class="skill-icon" loading="lazy"><span>AWS</span></div>
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/terraform/terraform-original.svg" alt="Terraform" class="skill-icon" loading="lazy"><span>Terraform</span></div>
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" alt="Git" class="skill-icon" loading="lazy"><span>Git</span></div>
               </div>
             </div>
           </div>
@@ -649,37 +296,25 @@
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Project 1 -->
-            <a href="https://ahmed-mhiri.github.io/angular-rentcar-project/" target="_blank" rel="noopener noreferrer" class="project-card group fade-in">
+            <!-- Suppstore — featured -->
+            <a href="https://ste-containing-companion-skill.trycloudflare.com/" target="_blank" rel="noopener noreferrer" class="project-card group fade-in">
               <div class="relative overflow-hidden rounded-t-2xl">
-                <img src="assests/rentcar.png" alt="Drivey RentCar Project" class="project-image w-full h-56 object-cover" />
+                <img src="assests/suppstore.png" alt="Suppstore Full Stack App" class="project-image w-full h-56 object-cover" loading="lazy" />
                 <span class="live-badge absolute top-4 right-4">
                   <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                   LIVE
                 </span>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-bold mb-2 text-slate-900 group-hover:text-indigo-600 transition">Drivey RentCar Project</h3>
-                <p class="text-slate-600 text-sm mb-4 leading-relaxed">A frontend-only RentCar web app built with Angular, showcasing core features like routing and a user-friendly design.</p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="tech-tag">Angular</span>
-                  <span class="tech-tag">TypeScript</span>
+                <span class="featured-badge absolute top-4 left-4">★ Featured</span>
+                <div class="project-overlay">
+                  <span class="inline-flex items-center gap-2 text-white font-semibold">
+                    Visit Live Site
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                  </span>
                 </div>
               </div>
-            </a>
-
-            <!-- Project 2 -->
-            <a href="https://ste-containing-companion-skill.trycloudflare.com/" target="_blank" rel="noopener noreferrer" class="project-card group fade-in delay-200">
-              <div class="relative overflow-hidden rounded-t-2xl">
-                <img src="assests/suppstore.png" alt="Suppstore Full Stack App" class="project-image w-full h-56 object-cover" />
-                <span class="live-badge absolute top-4 right-4">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                  LIVE
-                </span>
-              </div>
               <div class="p-6">
-                <h3 class="text-xl font-bold mb-2 text-slate-900 group-hover:text-indigo-600 transition">Suppstore Full Stack App</h3>
-                <p class="text-slate-600 text-sm mb-4 leading-relaxed">A full-stack application using Angular and Spring Boot, with JWT auth and REST APIs. Containerized with Docker, deployed to AWS via automated CI/CD (GitHub Actions, Terraform).</p>
+                <h3 class="text-xl font-bold mb-2 text-slate-900 group-hover:text-indigo-600 transition">Suppstore — Full Stack App</h3>
+                <p class="text-slate-600 text-sm mb-4 leading-relaxed">Full-stack application with Angular and Spring Boot, JWT auth and REST APIs. Containerized with Docker, deployed to AWS via CI/CD (GitHub Actions, Terraform).</p>
                 <div class="flex flex-wrap gap-2">
                   <span class="tech-tag">Angular</span>
                   <span class="tech-tag">Spring Boot</span>
@@ -687,6 +322,31 @@
                   <span class="tech-tag">GitHub Actions</span>
                   <span class="tech-tag">AWS</span>
                   <span class="tech-tag">Terraform</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- RentCar -->
+            <a href="https://ahmed-mhiri.github.io/angular-rentcar-project/" target="_blank" rel="noopener noreferrer" class="project-card group fade-in" style="transition-delay:.12s;">
+              <div class="relative overflow-hidden rounded-t-2xl">
+                <img src="assests/rentcar.png" alt="Drivey RentCar Project" class="project-image w-full h-56 object-cover" loading="lazy" />
+                <span class="live-badge absolute top-4 right-4">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  LIVE
+                </span>
+                <div class="project-overlay">
+                  <span class="inline-flex items-center gap-2 text-white font-semibold">
+                    Visit Live Site
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                  </span>
+                </div>
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold mb-2 text-slate-900 group-hover:text-indigo-600 transition">Drivey — RentCar Project</h3>
+                <p class="text-slate-600 text-sm mb-4 leading-relaxed">Frontend-only RentCar web app built with Angular, showcasing core features like routing and a user-friendly design.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="tech-tag">Angular</span>
+                  <span class="tech-tag">TypeScript</span>
                 </div>
               </div>
             </a>
@@ -708,12 +368,18 @@
             <div @click="openModal(['assests/retail/1.png','assests/retail/2.png','assests/retail/3.png','assests/retail/4.png','assests/retail/5.png','assests/retail/6.png','assests/retail/7.png'])"
                  class="project-card group fade-in cursor-pointer">
               <div class="relative overflow-hidden rounded-t-2xl">
-                <img src="assests/retail/1.png" alt="Retail-Flow" class="project-image w-full h-56 object-cover" />
-                <span class="absolute top-4 right-4 px-3 py-1 bg-slate-900/70 backdrop-blur text-white text-xs font-semibold rounded-full">Gallery</span>
+                <img src="assests/retail/1.png" alt="Retail-Flow" class="project-image w-full h-56 object-cover" loading="lazy" />
+                <span class="gallery-count absolute top-4 right-4">7 images</span>
+                <div class="project-overlay">
+                  <span class="inline-flex items-center gap-2 text-white font-semibold">
+                    View Gallery
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                  </span>
+                </div>
               </div>
               <div class="p-6">
                 <h3 class="text-xl font-bold mb-2 text-slate-900 group-hover:text-indigo-600 transition">Retail-Flow: Intelligent Finance Hub</h3>
-                <p class="text-slate-600 text-sm mb-4 leading-relaxed">A scalable full-stack application with a clean layered architecture, CI/CD via GitHub Actions and infrastructure orchestrated by Terraform and Docker on AWS.</p>
+                <p class="text-slate-600 text-sm mb-4 leading-relaxed">Scalable full-stack application with a clean layered architecture, CI/CD via GitHub Actions and infrastructure orchestrated by Terraform and Docker on AWS.</p>
                 <div class="flex flex-wrap gap-2">
                   <span class="tech-tag">Angular</span>
                   <span class="tech-tag">Spring Boot</span>
@@ -725,10 +391,16 @@
 
             <!-- Coworking -->
             <div @click="openModal(['assests/coworking space/1.png','assests/coworking space/2.png','assests/coworking space/3.png','assests/coworking space/4.png','assests/coworking space/5.png','assests/coworking space/6.png','assests/coworking space/7.png'])"
-                 class="project-card group fade-in delay-200 cursor-pointer">
+                 class="project-card group fade-in cursor-pointer" style="transition-delay:.12s;">
               <div class="relative overflow-hidden rounded-t-2xl">
-                <img src="assests/coworking space/1.png" alt="Coworking Space Platform" class="project-image w-full h-56 object-cover" />
-                <span class="absolute top-4 right-4 px-3 py-1 bg-slate-900/70 backdrop-blur text-white text-xs font-semibold rounded-full">Gallery</span>
+                <img src="assests/coworking space/1.png" alt="Coworking Space Platform" class="project-image w-full h-56 object-cover" loading="lazy" />
+                <span class="gallery-count absolute top-4 right-4">7 images</span>
+                <div class="project-overlay">
+                  <span class="inline-flex items-center gap-2 text-white font-semibold">
+                    View Gallery
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                  </span>
+                </div>
               </div>
               <div class="p-6">
                 <h3 class="text-xl font-bold mb-2 text-slate-900 group-hover:text-indigo-600 transition">Coworking Space Platform</h3>
@@ -764,7 +436,6 @@
 
           <div class="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-slate-100">
             <div class="grid md:grid-cols-2 gap-12 items-center">
-              <!-- Illustration -->
               <div class="fade-in hidden md:block">
                 <div class="max-w-md mx-auto">
                   <svg class="w-full h-auto" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
@@ -777,12 +448,11 @@
                 </div>
               </div>
 
-              <!-- Form -->
-              <div class="fade-in delay-200">
+              <div class="fade-in" style="transition-delay:.12s;">
                 <p class="text-slate-600 mb-6 text-sm leading-relaxed">
                   Fill out the form below or reach out on other platforms. Let's see where our ideas can fly.
                 </p>
-                <form id="contactForm" action="mailto:ahmedmhiri2004@gmail.com" method="POST" enctype="text/plain" novalidate>
+                <form id="contactForm" novalidate>
                   <div class="space-y-5">
                     <div class="relative">
                       <input type="text" id="name" name="name" required class="form-input" placeholder=" " />
@@ -805,6 +475,7 @@
                         <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
                       </svg>
                     </button>
+                    <p id="formSuccess" class="form-success">Thanks! Your email client is opening…</p>
                   </div>
                 </form>
               </div>
@@ -832,25 +503,27 @@
       </section>
     </main>
 
-    <footer class="bg-slate-900 text-slate-300 py-8">
+    <footer class="bg-slate-900 text-slate-300 py-10">
       <div class="container mx-auto max-w-6xl px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p class="text-sm">&copy; 2025 Ahmed Mhiri. All rights reserved.</p>
-        <p class="text-xs text-slate-500">Built with <span class="text-indigo-400">Tailwind CSS</span> & <span class="text-indigo-400">Alpine.js</span></p>
+        <p class="text-xs text-slate-500">Built with <span class="text-indigo-400">Tailwind CSS</span>, <span class="text-indigo-400">Alpine.js</span> &amp; <span class="text-indigo-400">Typed.js</span></p>
       </div>
     </footer>
 
-    <button id="scrollTopBtn" aria-label="Scroll to top" title="Scroll to top">&#8679;</button>
+    <button id="scrollTopBtn" aria-label="Scroll to top" title="Scroll to top">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"/></svg>
+    </button>
 
     <!-- ================= MODAL ================= -->
-    <div x-show="isModalOpen"
+    <div x-cloak
+         x-show="isModalOpen"
          x-transition:enter="transition ease-out duration-300"
          x-transition:enter-start="opacity-0"
          x-transition:enter-end="opacity-100"
          x-transition:leave="transition ease-in duration-300"
          x-transition:leave-start="opacity-100"
          x-transition:leave-end="opacity-0"
-         class="fixed inset-0 bg-slate-950/85 backdrop-blur-sm flex items-center justify-center z-[10000] p-4"
-         style="display: none;">
+         class="fixed inset-0 bg-slate-950/85 backdrop-blur-sm flex items-center justify-center z-[10000] p-4">
 
       <div @click.away="closeModal()" class="relative bg-white rounded-2xl shadow-2xl w-full max-w-5xl max-h-[92vh]">
         <button @click="closeModal()" class="absolute -top-3 -right-3 text-white bg-indigo-600 rounded-full p-2.5 z-50 hover:bg-indigo-700 transition shadow-lg">
@@ -877,18 +550,6 @@
 
   </div>
 
-  <script>
-    // Fallback IntersectionObserver for fade-in (if script.js isn't loaded)
-    document.addEventListener('DOMContentLoaded', () => {
-      if (typeof IntersectionObserver === 'undefined') return;
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-    });
-  </script>
-
   <script src="script.js"></script>
-
 </body>
 </html>
