@@ -1,7 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ==========================================================
-       0. SCROLL PROGRESS BAR
+       0. THEME TOGGLE
+       ========================================================== */
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle?.addEventListener('click', () => {
+        // Enable smooth transition only during toggle
+        document.documentElement.classList.add('theme-transitioning');
+
+        const isDark = document.documentElement.classList.toggle('dark');
+        try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (e) {}
+
+        // Update meta theme-color for mobile browser chrome
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', isDark ? '#020617' : '#4f46e5');
+
+        setTimeout(() => {
+            document.documentElement.classList.remove('theme-transitioning');
+        }, 350);
+    });
+
+    // Also update meta theme-color on initial load
+    if (document.documentElement.classList.contains('dark')) {
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', '#020617');
+    }
+
+    /* ==========================================================
+       1. SCROLL PROGRESS
        ========================================================== */
     const scrollProgress = document.getElementById('scrollProgress');
     const updateProgress = () => {
@@ -15,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', updateProgress, { passive: true });
 
     /* ==========================================================
-       1. DYNAMIC HEADER
+       2. DYNAMIC HEADER
        ========================================================== */
     const header = document.getElementById('mainHeader');
     const onScroll = () => {
@@ -25,11 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', onScroll, { passive: true });
 
     /* ==========================================================
-       2. ACTIVE NAV LINK
+       3. ACTIVE NAV
        ========================================================== */
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('main section[id]');
-
     if ('IntersectionObserver' in window && sections.length) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -45,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================
-       3. SMOOTH SCROLL
+       4. SMOOTH SCROLL
        ========================================================== */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -60,14 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ==========================================================
-       4. MOBILE MENU
+       5. MOBILE MENU
        ========================================================== */
     const menuBtn     = document.getElementById('menuBtn');
     const closeBtn    = document.getElementById('closeBtn');
     const mobileMenu  = document.getElementById('mobileMenu');
     const backdrop    = document.getElementById('backdrop');
     const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-
     const toggleMenu = (isOpen) => {
         mobileMenu?.classList.toggle('translate-x-full', !isOpen);
         backdrop?.classList.toggle('hidden', !isOpen);
@@ -80,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileLinks.forEach(l => l.addEventListener('click', () => toggleMenu(false)));
 
     /* ==========================================================
-       5. TYPED.JS
+       6. TYPED.JS
        ========================================================== */
     if (document.getElementById('typed-text') && typeof Typed !== 'undefined') {
         new Typed('#typed-text', {
@@ -90,19 +114,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Angular Interfaces.',
                 'Modern UI/UX Experiences.'
             ],
-            typeSpeed: 55,
-            backSpeed: 30,
-            backDelay: 1800,
-            startDelay: 400,
-            loop: true,
-            smartBackspace: true,
-            showCursor: true,
-            cursorChar: '|'
+            typeSpeed: 55, backSpeed: 30, backDelay: 1800,
+            startDelay: 400, loop: true, smartBackspace: true,
+            showCursor: true, cursorChar: '|'
         });
     }
 
     /* ==========================================================
-       6. FADE-IN ON SCROLL
+       7. FADE-IN
        ========================================================== */
     const fadeElems = document.querySelectorAll('.fade-in');
     if ('IntersectionObserver' in window && fadeElems.length) {
@@ -120,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================
-       7. TIMELINE LINE DRAWS ON SCROLL
+       8. TIMELINE DRAW
        ========================================================== */
     const timelineLine = document.querySelector('.timeline-line');
     if (timelineLine && 'IntersectionObserver' in window) {
@@ -138,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================
-       8. STAT COUNTER ANIMATION
+       9. STAT COUNTERS
        ========================================================== */
     const statNumbers = document.querySelectorAll('.stat-number[data-target]');
     const animateCounter = (el) => {
@@ -146,16 +165,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const suffix = el.dataset.suffix || '';
         const duration = 1500;
         const startTime = performance.now();
-
         const step = (now) => {
             const progress = Math.min((now - startTime) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+            const eased = 1 - Math.pow(1 - progress, 3);
             el.textContent = Math.round(eased * target) + suffix;
             if (progress < 1) requestAnimationFrame(step);
         };
         requestAnimationFrame(step);
     };
-
     if ('IntersectionObserver' in window && statNumbers.length) {
         const statObserver = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
@@ -173,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================
-       9. SCROLL-TO-TOP
+       10. SCROLL-TO-TOP
        ========================================================== */
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     window.addEventListener('scroll', () => {
@@ -184,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ==========================================================
-       10. CONTACT FORM
+       11. CONTACT FORM
        ========================================================== */
     const form = document.getElementById('contactForm');
     if (form) {
@@ -210,19 +227,10 @@ document.addEventListener('DOMContentLoaded', () => {
             [nameInput, emailInput, messageInput].forEach(hideError);
             successMsg?.classList.remove('show');
 
-            if (!nameInput.value.trim()) {
-                showError(nameInput, 'Please enter your name.');
-                isValid = false;
-            }
+            if (!nameInput.value.trim()) { showError(nameInput, 'Please enter your name.'); isValid = false; }
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(emailInput.value.trim())) {
-                showError(emailInput, 'Please enter a valid email address.');
-                isValid = false;
-            }
-            if (!messageInput.value.trim()) {
-                showError(messageInput, 'Please enter a message.');
-                isValid = false;
-            }
+            if (!emailRegex.test(emailInput.value.trim())) { showError(emailInput, 'Please enter a valid email address.'); isValid = false; }
+            if (!messageInput.value.trim()) { showError(messageInput, 'Please enter a message.'); isValid = false; }
             if (!isValid) return;
 
             const subject = encodeURIComponent(`Portfolio contact from ${nameInput.value.trim()}`);
@@ -232,7 +240,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 `${messageInput.value.trim()}`
             );
             window.location.href = `mailto:ahmedmhiri2004@gmail.com?subject=${subject}&body=${body}`;
-
             successMsg?.classList.add('show');
         });
 
