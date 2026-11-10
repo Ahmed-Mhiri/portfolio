@@ -4,12 +4,394 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ahmed Mhiri | Full Stack Developer</title>
+  <meta name="description" content="Ahmed Mhiri — Informatik Student at FH Dortmund. Full Stack Developer specializing in Angular, Spring Boot and modern web apps." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="styles.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
   <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <style>
+    :root {
+      --brand: #4f46e5;
+      --brand-dark: #4338ca;
+      --brand-light: #eef2ff;
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ---------- Text utilities ---------- */
+    .text-gradient {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 55%, #ec4899 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #4f46e5;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: #0f172a;
+    }
+    @media (min-width: 768px) { .section-title { font-size: 3rem; } }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: #64748b;
+      margin-top: 0.75rem;
+      max-width: 36rem;
+    }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+      color: #fff;
+      box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px 0 rgba(79, 70, 229, 0.4);
+    }
+    .btn-secondary {
+      background: #fff;
+      color: #1e293b;
+      border: 1.5px solid #e2e8f0;
+    }
+    .btn-secondary:hover {
+      border-color: #4f46e5;
+      color: #4f46e5;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.12);
+    }
+
+    /* ---------- Nav ---------- */
+    .nav-link {
+      position: relative;
+      padding: 0.5rem 0;
+      color: #334155;
+      font-weight: 500;
+      transition: color 0.25s ease;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: linear-gradient(90deg, #4f46e5, #7c3aed);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover { color: #4f46e5; }
+    .nav-link:hover::after { width: 100%; }
+
+    .mobile-nav-link {
+      display: block;
+      padding: 0.85rem 1rem;
+      border-radius: 0.65rem;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s ease;
+    }
+    .mobile-nav-link:hover {
+      background: #eef2ff;
+      color: #4f46e5;
+      padding-left: 1.25rem;
+    }
+
+    /* ---------- Hero blobs ---------- */
+    .blob-c {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.55;
+      animation: blobFloat 8s ease-in-out infinite;
+    }
+    .blob.one {
+      width: 380px; height: 380px;
+      background: #a5b4fc;
+      top: -60px; left: -80px;
+    }
+    .blob.two {
+      width: 420px; height: 420px;
+      background: #ddd6fe;
+      bottom: -80px; right: -80px;
+      animation-delay: 2s;
+    }
+    @keyframes blobFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33%      { transform: translate(30px, -50px) scale(1.08); }
+      66%      { transform: translate(-20px, 20px) scale(0.94); }
+    }
+
+    /* ---------- Stats ---------- */
+    .stat-number {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.4rem;
+    }
+
+    /* ---------- Timeline ---------- */
+    .timeline-dot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 3rem; height: 3rem;
+      border-radius: 9999px;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: #fff;
+      box-shadow: 0 8px 20px -6px rgba(79, 70, 229, 0.5);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 10;
+    }
+    .timeline-dot.future {
+      background: linear-gradient(135deg, #10b981, #059669);
+      box-shadow: 0 8px 20px -6px rgba(16, 185, 129, 0.5);
+    }
+
+    /* ---------- Skill cards ---------- */
+    .skill-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 1.25rem 0.75rem;
+      background: #fff;
+      border: 1.5px solid #f1f5f9;
+      border-radius: 0.9rem;
+      font-weight: 600;
+      font-size: 0.82rem;
+      color: #334155;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: default;
+      text-align: center;
+    }
+    .skill-card:hover {
+      transform: translateY(-4px);
+      border-color: #c7d2fe;
+      box-shadow: 0 12px 24px -8px rgba(79, 70, 229, 0.2);
+    }
+    .skill-icon { width: 38px; height: 38px; }
+
+    /* ---------- Project cards ---------- */
+    .project-card {
+      display: block;
+      background: #fff;
+      border: 1.5px solid #f1f5f9;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: #c7d2fe;
+      box-shadow: 0 24px 48px -16px rgba(79, 70, 229, 0.25);
+    }
+    .project-card .project-image {
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .project-card:hover .project-image {
+      transform: scale(1.08);
+    }
+
+    .tech-tag {
+      display: inline-block;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      background: #eef2ff;
+      color: #4338ca;
+      border-radius: 9999px;
+      letter-spacing: 0.01em;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.75rem;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(6px);
+      border-radius: 9999px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #047857;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    /* ---------- Contact links ---------- */
+    .contact-link {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 1.25rem;
+      border-radius: 0.75rem;
+      color: #475569;
+      font-weight: 500;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .contact-link:hover {
+      color: #4f46e5;
+      background: #eef2ff;
+      transform: translateY(-2px);
+    }
+    .contact-icon {
+      width: 26px; height: 26px;
+      transition: transform 0.3s ease;
+    }
+    .contact-link:hover .contact-icon { transform: scale(1.15); }
+
+    /* ---------- Form ---------- */
+    .form-input {
+      width: 100%;
+      padding: 1.15rem 1rem 0.55rem 1rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 0.75rem;
+      background: #f8fafc;
+      font-size: 1rem;
+      color: #1e293b;
+      transition: all 0.25s ease;
+      font-family: inherit;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: #4f46e5;
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+    }
+    .form-label {
+      position: absolute;
+      top: 1.05rem;
+      left: 1rem;
+      font-size: 0.95rem;
+      color: #94a3b8;
+      pointer-events: none;
+      transition: all 0.2s ease;
+    }
+    .form-input:focus + .form-label,
+    .form-input:not(:placeholder-shown) + .form-label {
+      top: 0.4rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #4f46e5;
+    }
+    .form-error {
+      display: none;
+      font-size: 0.75rem;
+      color: #dc2626;
+      margin-top: 0.35rem;
+    }
+
+    /* ---------- Fade-in ---------- */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .delay-200 { transition-delay: 0.15s; }
+
+    /* ---------- Scroll to top ---------- */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      width: 3rem; height: 3rem;
+      border-radius: 9999px;
+      background: #4f46e5;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 6px 20px -4px rgba(79, 70, 229, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      border: none;
+      font-size: 1.1rem;
+      z-index: 999;
+    }
+    #scrollTopBtn.show { opacity: 1; visibility: visible; }
+    #scrollTopBtn:hover { transform: translateY(-4px); background: #4338ca; }
+  </style>
 </head>
-<body class="bg-white">
+<body class="bg-white text-slate-800 antialiased">
 
   <div x-data="{
     isModalOpen: false,
@@ -20,248 +402,369 @@
         this.currentImageIndex = 0;
         this.isModalOpen = true;
     },
-    closeModal() {
-        this.isModalOpen = false;
-    },
-    nextImage() {
-        this.currentImageIndex = (this.currentImageIndex + 1) % this.currentProjectImages.length;
-    },
-    prevImage() {
-        this.currentImageIndex = (this.currentImageIndex - 1 + this.currentProjectImages.length) % this.currentProjectImages.length;
-    }
-  }" @keydown.escape.window="closeModal()" @keydown.arrow-right.window="isModalOpen && nextImage()" @keydown.arrow-left.window="isModalOpen && prevImage()">
+    closeModal() { this.isModalOpen = false; },
+    nextImage() { this.currentImageIndex = (this.currentImageIndex + 1) % this.currentProjectImages.length; },
+    prevImage() { this.currentImageIndex = (this.currentImageIndex - 1 + this.currentProjectImages.length) % this.currentProjectImages.length; }
+  }"
+  @keydown.escape.window="closeModal()"
+  @keydown.arrow-right.window="isModalOpen && nextImage()"
+  @keydown.arrow-left.window="isModalOpen && prevImage()">
 
-    <header id="mainHeader" class="fixed top-0 w-full z-[9999] backdrop-blur-lg bg-white/80 shadow-sm transition-all duration-300">
-      <div class="container mx-auto flex justify-between items-center px-6 py-4">
-        <a href="#about" class="text-2xl font-extrabold text-indigo-600 hover:text-indigo-700 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg">
-          AM.
+    <!-- ================= HEADER ================= -->
+    <header id="mainHeader" class="fixed top-0 w-full z-[9999] backdrop-blur-xl bg-white/70 border-b border-slate-200/60 transition-all duration-300">
+      <div class="container mx-auto max-w-6xl flex justify-between items-center px-6 py-3.5">
+        <a href="#about" class="text-xl font-black tracking-tight text-indigo-600 hover:text-indigo-700 transition">
+          AM<span class="text-slate-900">.</span>
         </a>
         <nav>
-          <ul id="navMenu" class="hidden md:flex space-x-10 text-gray-700 font-medium">
-            <li><a href="#about" class="nav-link">About</a></li>
-            <li><a href="#journey" class="nav-link">My Journey</a></li>
-            <li><a href="#skills" class="nav-link">Skills</a></li>
+          <ul id="navMenu" class="hidden md:flex items-center gap-9 text-sm font-medium">
+            <li><a href="#about"    class="nav-link">About</a></li>
+            <li><a href="#journey"  class="nav-link">Journey</a></li>
+            <li><a href="#skills"   class="nav-link">Skills</a></li>
             <li><a href="#live-work" class="nav-link">Work</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
+            <li><a href="#contact"  class="nav-link">Contact</a></li>
           </ul>
-          <button id="menuBtn" class="md:hidden p-2 rounded-md text-indigo-600 hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500" aria-label="Toggle menu" aria-controls="mobileMenu" aria-expanded="false">
+          <button id="menuBtn" class="md:hidden p-2 rounded-lg text-indigo-600 hover:bg-indigo-50 focus:outline-none" aria-label="Toggle menu" aria-controls="mobileMenu" aria-expanded="false">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
           </button>
         </nav>
       </div>
     </header>
 
-    <div id="backdrop" class="fixed inset-0 bg-black bg-opacity-40 hidden z-[9998]"></div>
-    <div id="mobileMenu" class="fixed top-0 right-0 h-full w-64 bg-white shadow-2xl p-6 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden z-[9999]">
-      <button id="closeBtn" class="absolute top-6 right-6 p-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500" aria-label="Close menu">
+    <!-- Mobile menu -->
+    <div id="backdrop" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm hidden z-[9998]"></div>
+    <div id="mobileMenu" class="fixed top-0 right-0 h-full w-72 bg-white shadow-2xl p-6 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden z-[9999]">
+      <button id="closeBtn" class="absolute top-5 right-5 p-2 rounded-lg text-slate-600 hover:bg-slate-100" aria-label="Close menu">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
       </button>
-      <nav class="mt-16">
-        <a href="#about" class="mobile-nav-link">About</a>
-        <a href="#journey" class="mobile-nav-link">My Journey</a>
-        <a href="#skills" class="mobile-nav-link">Skills</a>
+      <a href="#about" class="mt-12 mb-6 inline-block text-xl font-black text-indigo-600">AM<span class="text-slate-900">.</span></a>
+      <nav class="space-y-1">
+        <a href="#about"     class="mobile-nav-link">About</a>
+        <a href="#journey"   class="mobile-nav-link">My Journey</a>
+        <a href="#skills"    class="mobile-nav-link">Skills</a>
         <a href="#live-work" class="mobile-nav-link">Work</a>
-        <a href="#contact" class="mobile-nav-link">Contact</a>
+        <a href="#contact"   class="mobile-nav-link">Contact</a>
       </nav>
     </div>
 
     <main>
-      <section id="about" class="relative min-h-screen flex items-center py-24 px-4 overflow-hidden">
+
+      <!-- ================= HERO / ABOUT ================= -->
+      <section id="about" class="relative min-h-screen flex items-center pt-28 pb-20 px-4 overflow-hidden">
         <div class="blob-c"><div class="blob one"></div><div class="blob two"></div></div>
-        <div class="container mx-auto grid md:grid-cols-5 gap-10 lg:gap-20 items-center z-10">
-          <div class="md:col-span-2 flex justify-center fade-in">
-            <img src="assests/photo.jpg" alt="Ahmed Mhiri" class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover shadow-2xl border-4 border-white">
-          </div>
-          <div class="md:col-span-3 text-center md:text-left fade-in delay-200">
-            <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900">Ahmed Mhiri</h1>
-            <p class="text-xl md:text-2xl font-semibold text-indigo-600 mt-2">Informatik Student at FH Dortmund</p>
-            
-            <div class="text-lg md:text-xl text-gray-700 h-10 mt-4">
-              I build <span id="typed-text" class="font-semibold text-gray-800"></span>
+
+        <div class="container mx-auto max-w-6xl relative z-10">
+          <div class="grid md:grid-cols-5 gap-12 lg:gap-16 items-center">
+            <!-- Photo -->
+            <div class="md:col-span-2 flex justify-center fade-in">
+              <div class="relative">
+                <div class="absolute -inset-6 rounded-full bg-gradient-to-br from-indigo-400 via-violet-400 to-pink-400 opacity-25 blur-3xl"></div>
+                <img src="assests/photo.jpg" alt="Ahmed Mhiri"
+                     class="relative w-64 h-64 md:w-80 md:h-80 rounded-full object-cover shadow-2xl ring-4 ring-white">
+              </div>
             </div>
 
-            <p class="mt-6 text-gray-600 max-w-xl mx-auto md:mx-0">
-              As a passionate full-stack developer, I specialize in creating seamless digital experiences. I enjoy bringing ideas to life, from crafting intuitive user interfaces with Angular to engineering robust backend systems with Spring Boot. Based in the Bochum area, I am currently seeking opportunities to contribute to innovative projects and grow as a developer.
-            </p>
-            
-            <div class="mt-8 flex flex-wrap items-center justify-center md:justify-start gap-4">
-              <a href="#live-work" class="btn btn-primary">View My Work</a>
-              <a href="assests/CV english.pdf" download class="btn btn-secondary">
-                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
-                Download CV
-              </a>
-              <a href="https://github.com/Ahmed-Mhiri" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.11.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.236 1.84 1.236 1.07 1.835 2.81 1.305 3.495.997.11-.775.418-1.305.76-1.605-2.665-.3-5.466-1.335-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.536-1.523.117-3.176 0 0 1.01-.322 3.3 1.23a11.5 11.5 0 0 1 3-.405c1.02.005 2.04.138 3 .405 2.29-1.553 3.3-1.23 3.3-1.23.655 1.653.243 2.873.12 3.176.77.84 1.236 1.91 1.236 3.22 0 4.61-2.807 5.625-5.48 5.92.43.37.81 1.096.81 2.21 0 1.595-.015 2.88-.015 3.275 0 .32.215.694.825.576C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z" /></svg>
-                GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+            <!-- Text -->
+            <div class="md:col-span-3 text-center md:text-left fade-in delay-200">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-full text-xs font-semibold mb-5">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                Available for Werkstudent / Internship
+              </div>
 
-      <section id="journey" class="py-24 bg-gray-50">
-        <div class="container mx-auto px-6">
-          <div class="text-center mb-20 fade-in">
-            <h2 class="text-4xl font-extrabold text-gray-900">My Journey</h2>
-            <p class="text-lg text-gray-600 mt-2">A timeline of my academic and professional path.</p>
-          </div>
-          <div class="relative wrap overflow-hidden p-10 h-full">
-            <div class="border-2-2 absolute border-opacity-20 border-gray-700 h-full border" style="left: 50%"></div>
-            <div class="mb-8 flex justify-between items-center w-full right-timeline">
-              <div class="order-1 w-5/12"></div>
-              <div class="z-20 flex items-center order-1 bg-indigo-600 shadow-xl w-8 h-8 rounded-full"><h1 class="mx-auto font-semibold text-lg text-white">1</h1></div>
-              <div class="order-1 bg-white rounded-lg shadow-xl w-5/12 px-6 py-4 fade-in">
-                <h3 class="font-bold text-gray-800 text-xl">Baccalauréat Diploma</h3>
-                <p class="text-sm leading-snug tracking-wide text-gray-600">June 2023 | Tunisia</p>
-                <p class="text-md text-gray-700 mt-2">Graduated with a focus in science, laying the foundation for my technical career.</p>
-              </div>
-            </div>
-            <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
-              <div class="order-1 w-5/12"></div>
-              <div class="z-20 flex items-center order-1 bg-indigo-600 shadow-xl w-8 h-8 rounded-full"><h1 class="mx-auto text-white font-semibold text-lg">2</h1></div>
-              <div class="order-1 bg-white rounded-lg shadow-xl w-5/12 px-6 py-4 fade-in">
-                <h3 class="font-bold text-gray-800 text-xl">Relocation & Language Mastery</h3>
-                <p class="text-sm leading-snug tracking-wide text-gray-600">Late 2023 | Germany</p>
-                <p class="text-md text-gray-700 mt-2">Moved to Germany and achieved a <span class="font-semibold">telc C1 Hochschule</span> certificate.</p>
-              </div>
-            </div>
-            <div class="mb-8 flex justify-between items-center w-full right-timeline">
-              <div class="order-1 w-5/12"></div>
-              <div class="z-20 flex items-center order-1 bg-indigo-600 shadow-xl w-8 h-8 rounded-full"><h1 class="mx-auto font-semibold text-lg text-white">3</h1></div>
-              <div class="order-1 bg-white rounded-lg shadow-xl w-5/12 px-6 py-4 fade-in">
-                <h3 class="font-bold text-gray-800 text-xl">Began University Studies</h3>
-                <p class="text-sm leading-snug tracking-wide text-gray-600">September 2024 | FH Dortmund</p>
-                <p class="text-md text-gray-700 mt-2">Started my Bachelor's degree in Computer Science (Informatik).</p>
-              </div>
-            </div>
-            <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
-              <div class="order-1 w-5/12"></div>
-              <div class="z-20 flex items-center order-1 bg-green-500 shadow-xl w-8 h-8 rounded-full"><h1 class="mx-auto text-white font-semibold text-lg">4</h1></div>
-              <div class="order-1 bg-white rounded-lg shadow-xl w-5/12 px-6 py-4 fade-in">
-                <h3 class="font-bold text-green-600 text-xl">Future Goals</h3>
-                <p class="text-sm leading-snug tracking-wide text-gray-600">Present & Beyond</p>
-                <p class="text-md text-gray-700 mt-2">Seeking internships and co-op opportunities to apply my skills to real-world challenges.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <section id="skills" class="py-24 bg-white">
-        <div class="container mx-auto px-6">
-          <div class="text-center mb-16 fade-in">
-            <h2 class="text-4xl font-extrabold text-gray-900">My Tech Stack</h2>
-            <p class="text-lg text-gray-600 mt-2">Technologies I use to bring ideas to life.</p>
-          </div>
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            <div class="skill-card fade-in"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/angularjs/angularjs-original.svg" alt="Angular Icon" class="skill-icon"><span>Angular</span></div>
-            <div class="skill-card fade-in"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/spring/spring-original.svg" alt="Spring Boot Icon" class="skill-icon"><span>Spring Boot</span></div>
-            <div class="skill-card fade-in"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="Java Icon" class="skill-icon"><span>Java</span></div>
-            <div class="skill-card fade-in"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="TypeScript Icon" class="skill-icon"><span>TypeScript</span></div>
-            <div class="skill-card fade-in"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="JavaScript Icon" class="skill-icon"><span>JavaScript</span></div>
-            <div class="skill-card fade-in"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" alt="HTML5 Icon" class="skill-icon"><span>HTML5</span></div>
-            <div class="skill-card fade-in"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" alt="CSS3 Icon" class="skill-icon"><span>CSS3</span></div>
-            <div class="skill-card fade-in"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="Docker Icon" class="skill-icon"><span>Docker</span></div>
-            <div class="skill-card fade-in"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS Icon" class="skill-icon"><span>AWS</span></div>
-            <div class="skill-card fade-in"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/terraform/terraform-original.svg" alt="Terraform Icon" class="skill-icon"><span>Terraform</span></div>
-            <div class="skill-card fade-in"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" alt="Git Icon" class="skill-icon"><span>Git</span></div>
-            <div class="skill-card fade-in"><svg class="skill-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.022 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg><span>Web Design</span></div>
-          </div>
-        </div>
-      </section>
+              <h1 class="text-4xl md:text-6xl font-black tracking-tight text-slate-900 leading-[1.05]">
+                Hi, I'm <span class="text-gradient">Ahmed Mhiri</span>
+              </h1>
 
-      <section id="live-work" class="pt-24 pb-12 bg-gray-50 overflow-hidden">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl font-extrabold text-gray-900">Live & Deployed Projects</h2>
-                <p class="text-lg text-gray-600 mt-2">Explore the deployed applications.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <a href="https://ahmed-mhiri.github.io/angular-rentcar-project/" target="_blank" rel="noopener noreferrer" class="project-card fade-in group">
-                    <div class="relative overflow-hidden rounded-t-lg">
-                        <img src="assests/rentcar.png" alt="Drivey RentCar Project" class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-110" />
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-gray-900">Drivey RentCar Project</h3>
-                        <p class="text-gray-700 mb-4">A frontend-only RentCar web app built with Angular, showcasing core features like routing and a user-friendly design.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tech-tag">Angular</span><span class="tech-tag">TypeScript</span>
-                        </div>
-                    </div>
+              <p class="mt-4 text-lg md:text-xl font-semibold text-indigo-600">
+                Informatik Student · FH Dortmund
+              </p>
+
+              <div class="text-lg md:text-xl text-slate-700 h-8 mt-4 font-medium">
+                I build <span id="typed-text" class="text-slate-900 font-semibold"></span>
+              </div>
+
+              <p class="mt-6 text-slate-600 max-w-xl mx-auto md:mx-0 leading-relaxed">
+                As a passionate full-stack developer, I specialize in creating seamless digital experiences.
+                I enjoy bringing ideas to life — from crafting intuitive user interfaces with Angular to
+                engineering robust backend systems with Spring Boot. Based in the Bochum area, I'm currently
+                seeking opportunities to contribute to innovative projects and grow as a developer.
+              </p>
+
+              <div class="mt-7 flex flex-wrap items-center justify-center md:justify-start gap-3">
+                <a href="#live-work" class="btn btn-primary">
+                  View My Work
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                 </a>
-                <a href="https://ste-containing-companion-skill.trycloudflare.com/" target="_blank" rel="noopener noreferrer" class="project-card fade-in group">
-    <div class="relative overflow-hidden rounded-t-lg">
-        <img src="assests/suppstore.png" alt="Full Stack Angular-Spring Boot App" class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-110" />
-    </div>
-    <div class="p-6">
-        <h3 class="text-xl font-bold mb-2 text-gray-900">Suppstore Full Stack App</h3>
-        <p class="text-gray-700 mb-4">
-  A full-stack application using Angular and Spring Boot, featuring JWT authentication and RESTful APIs. Containerized with Docker and deployed to AWS through a fully automated CI/CD pipeline, leveraging GitHub Actions and Terraform for infrastructure provisioning.
-</p>
-        <div class="flex flex-wrap gap-2 mb-4">
-            <span class="tech-tag">Angular</span>
-            <span class="tech-tag">Spring Boot</span>
-            <span class="tech-tag">JWT</span>
-            <span class="tech-tag">GitHub Actions</span>
-            <span class="tech-tag">AWS</span>
-            <span class="tech-tag">Terraform</span>
-        </div>
-    </div>
-</a>
+                <a href="assests/CV english.pdf" download class="btn btn-secondary">
+                  <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                  Download CV
+                </a>
+                <a href="https://github.com/Ahmed-Mhiri" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" aria-label="GitHub">
+                  <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.11.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.236 1.84 1.236 1.07 1.835 2.81 1.305 3.495.997.11-.775.418-1.305.76-1.605-2.665-.3-5.466-1.335-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.536-1.523.117-3.176 0 0 1.01-.322 3.3 1.23a11.5 11.5 0 0 1 3-.405c1.02.005 2.04.138 3 .405 2.29-1.553 3.3-1.23 3.3-1.23.655 1.653.243 2.873.12 3.176.77.84 1.236 1.91 1.236 3.22 0 4.61-2.807 5.625-5.48 5.92.43.37.81 1.096.81 2.21 0 1.595-.015 2.88-.015 3.275 0 .32.215.694.825.576C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z" /></svg>
+                  GitHub
+                </a>
+              </div>
+
+              <!-- Stats -->
+              <div class="mt-10 pt-8 border-t border-slate-200/70 grid grid-cols-3 gap-4 max-w-md mx-auto md:mx-0">
+                <div class="text-center md:text-left">
+                  <div class="stat-number">5th</div>
+                  <div class="stat-label">Semester</div>
+                </div>
+                <div class="text-center md:text-left">
+                  <div class="stat-number">10+</div>
+                  <div class="stat-label">Technologies</div>
+                </div>
+                <div class="text-center md:text-left">
+                  <div class="stat-number">3+</div>
+                  <div class="stat-label">Live Projects</div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
       </section>
 
-      <section id="gallery-work" class="pt-12 pb-24 bg-white overflow-hidden">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl font-extrabold text-gray-900">Project Galleries</h2>
-                <p class="text-lg text-gray-600 mt-2">Projects not currently deployed live. Click to view images.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div @click="openModal(['assests/retail/1.png', 'assests/retail/2.png', 'assests/retail/3.png', 'assests/retail/4.png', 'assests/retail/5.png', 'assests/retail/6.png', 'assests/retail/7.png'])" class="project-card fade-in group cursor-pointer">
-                    <div class="relative overflow-hidden rounded-t-lg">
-                        <img src="assests/retail/1.png" alt="Retail-Flow Project" class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-110" />
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-gray-900">Retail-Flow: Intelligent Finance Hub</h3>
-                        <p class="text-gray-700 mb-4">Engineered a scalable full-stack application with a clean layered architecture, CI/CD pipeline using GitHub Actions, and infrastructure orchestrated by Terraform and Docker on AWS.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tech-tag">Angular</span><span class="tech-tag">Spring Boot</span><span class="tech-tag">Terraform</span><span class="tech-tag">AWS</span>
-                        </div>
-                    </div>
+      <!-- ================= JOURNEY ================= -->
+      <section id="journey" class="py-24 bg-slate-50">
+        <div class="container mx-auto max-w-4xl px-6">
+          <div class="text-center mb-16 fade-in">
+            <span class="section-eyebrow">Timeline</span>
+            <h2 class="section-title">My Journey</h2>
+            <p class="section-subtitle mx-auto">A timeline of my academic and professional path.</p>
+          </div>
+
+          <div class="relative">
+            <div class="absolute left-6 top-6 bottom-6 w-px bg-gradient-to-b from-indigo-500 via-indigo-300 to-indigo-100"></div>
+
+            <div class="space-y-8">
+              <!-- 1 -->
+              <div class="relative flex gap-6 fade-in">
+                <div class="timeline-dot">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" /></svg>
                 </div>
-                <div @click="openModal(['assests/coworking space/1.png', 'assests/coworking space/2.png', 'assests/coworking space/3.png', 'assests/coworking space/4.png', 'assests/coworking space/5.png', 'assests/coworking space/6.png', 'assests/coworking space/7.png'])" class="project-card fade-in group cursor-pointer">
-                    <div class="relative overflow-hidden rounded-t-lg">
-                        <img src="assests/coworking space/1.png" alt="Coworking Space Platform" class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-110" />
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-gray-900">Coworking Space Platform</h3>
-                        <p class="text-gray-700 mb-4">A comprehensive platform for booking spaces. Features user roles, file management, and an advanced statistics dashboard for administrators to manage rooms and users.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tech-tag">Angular</span><span class="tech-tag">Ng-Zorro</span><span class="tech-tag">Spring Security</span><span class="tech-tag">MySQL</span>
-                        </div>
-                    </div>
+                <div class="flex-1 bg-white rounded-2xl shadow-sm border border-slate-100 p-6 hover:shadow-lg transition-shadow">
+                  <h3 class="font-bold text-slate-900 text-lg">Baccalauréat Diploma</h3>
+                  <p class="text-xs font-semibold uppercase tracking-wider text-indigo-600 mt-1">June 2023 · Tunisia</p>
+                  <p class="text-slate-600 mt-3 text-sm leading-relaxed">Graduated with a focus in science, laying the foundation for my technical career.</p>
                 </div>
+              </div>
+
+              <!-- 2 -->
+              <div class="relative flex gap-6 fade-in">
+                <div class="timeline-dot">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" /></svg>
+                </div>
+                <div class="flex-1 bg-white rounded-2xl shadow-sm border border-slate-100 p-6 hover:shadow-lg transition-shadow">
+                  <h3 class="font-bold text-slate-900 text-lg">Relocation & Language Mastery</h3>
+                  <p class="text-xs font-semibold uppercase tracking-wider text-indigo-600 mt-1">Late 2023 · Germany</p>
+                  <p class="text-slate-600 mt-3 text-sm leading-relaxed">Moved to Germany and achieved a <span class="font-semibold text-slate-900">telc C1 Hochschule</span> certificate.</p>
+                </div>
+              </div>
+
+              <!-- 3 -->
+              <div class="relative flex gap-6 fade-in">
+                <div class="timeline-dot">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                </div>
+                <div class="flex-1 bg-white rounded-2xl shadow-sm border border-slate-100 p-6 hover:shadow-lg transition-shadow">
+                  <h3 class="font-bold text-slate-900 text-lg">Began University Studies</h3>
+                  <p class="text-xs font-semibold uppercase tracking-wider text-indigo-600 mt-1">September 2024 · FH Dortmund</p>
+                  <p class="text-slate-600 mt-3 text-sm leading-relaxed">Started my Bachelor's degree in Computer Science (Informatik). Currently in the 5th semester.</p>
+                </div>
+              </div>
+
+              <!-- 4 -->
+              <div class="relative flex gap-6 fade-in">
+                <div class="timeline-dot future">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" /></svg>
+                </div>
+                <div class="flex-1 bg-white rounded-2xl shadow-sm border border-emerald-100 p-6 hover:shadow-lg transition-shadow">
+                  <h3 class="font-bold text-emerald-700 text-lg">Future Goals</h3>
+                  <p class="text-xs font-semibold uppercase tracking-wider text-emerald-600 mt-1">Present & Beyond</p>
+                  <p class="text-slate-600 mt-3 text-sm leading-relaxed">Seeking Werkstudent, internship and co-op opportunities to apply my skills to real-world challenges.</p>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
       </section>
-      <section id="contact" class="py-24 bg-gray-50">
-        <div class="container mx-auto px-6">
-          <div class="text-center mb-12">
-            <h2 class="text-4xl font-extrabold text-gray-900">Start a Conversation</h2>
-            <p class="text-lg text-gray-600 mt-2">I'm always excited to connect and discuss new ideas.</p>
-            
-            <div class="inline-flex items-center gap-2 mt-4 bg-green-100 text-green-800 text-sm font-medium px-4 py-1 rounded-full">
-              <span class="relative flex h-3 w-3">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+
+      <!-- ================= SKILLS ================= -->
+      <section id="skills" class="py-24 bg-white">
+        <div class="container mx-auto max-w-6xl px-6">
+          <div class="text-center mb-16 fade-in">
+            <span class="section-eyebrow">Tech Stack</span>
+            <h2 class="section-title">My Tech Stack</h2>
+            <p class="section-subtitle mx-auto">Technologies I use to bring ideas to life.</p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-10">
+            <!-- Frontend -->
+            <div class="fade-in">
+              <h3 class="text-sm font-bold uppercase tracking-wider text-indigo-600 mb-4 pb-2 border-b border-slate-100">Frontend</h3>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/angularjs/angularjs-original.svg" alt="Angular" class="skill-icon"><span>Angular</span></div>
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React" class="skill-icon"><span>React</span></div>
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="TypeScript" class="skill-icon"><span>TypeScript</span></div>
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="JavaScript" class="skill-icon"><span>JavaScript</span></div>
+              </div>
+            </div>
+
+            <!-- Backend -->
+            <div class="fade-in delay-200">
+              <h3 class="text-sm font-bold uppercase tracking-wider text-indigo-600 mb-4 pb-2 border-b border-slate-100">Backend</h3>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/spring/spring-original.svg" alt="Spring Boot" class="skill-icon"><span>Spring Boot</span></div>
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="Java" class="skill-icon"><span>Java</span></div>
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" class="skill-icon"><span>PostgreSQL</span></div>
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" alt="MySQL" class="skill-icon"><span>MySQL</span></div>
+              </div>
+            </div>
+
+            <!-- DevOps -->
+            <div class="fade-in">
+              <h3 class="text-sm font-bold uppercase tracking-wider text-indigo-600 mb-4 pb-2 border-b border-slate-100">DevOps & Tools</h3>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="Docker" class="skill-icon"><span>Docker</span></div>
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" class="skill-icon"><span>AWS</span></div>
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/terraform/terraform-original.svg" alt="Terraform" class="skill-icon"><span>Terraform</span></div>
+                <div class="skill-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" alt="Git" class="skill-icon"><span>Git</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= LIVE WORK ================= -->
+      <section id="live-work" class="py-24 bg-slate-50">
+        <div class="container mx-auto max-w-6xl px-6">
+          <div class="text-center mb-16 fade-in">
+            <span class="section-eyebrow">Portfolio</span>
+            <h2 class="section-title">Live & Deployed Projects</h2>
+            <p class="section-subtitle mx-auto">Explore the deployed applications.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Project 1 -->
+            <a href="https://ahmed-mhiri.github.io/angular-rentcar-project/" target="_blank" rel="noopener noreferrer" class="project-card group fade-in">
+              <div class="relative overflow-hidden rounded-t-2xl">
+                <img src="assests/rentcar.png" alt="Drivey RentCar Project" class="project-image w-full h-56 object-cover" />
+                <span class="live-badge absolute top-4 right-4">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  LIVE
+                </span>
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold mb-2 text-slate-900 group-hover:text-indigo-600 transition">Drivey RentCar Project</h3>
+                <p class="text-slate-600 text-sm mb-4 leading-relaxed">A frontend-only RentCar web app built with Angular, showcasing core features like routing and a user-friendly design.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="tech-tag">Angular</span>
+                  <span class="tech-tag">TypeScript</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- Project 2 -->
+            <a href="https://ste-containing-companion-skill.trycloudflare.com/" target="_blank" rel="noopener noreferrer" class="project-card group fade-in delay-200">
+              <div class="relative overflow-hidden rounded-t-2xl">
+                <img src="assests/suppstore.png" alt="Suppstore Full Stack App" class="project-image w-full h-56 object-cover" />
+                <span class="live-badge absolute top-4 right-4">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  LIVE
+                </span>
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold mb-2 text-slate-900 group-hover:text-indigo-600 transition">Suppstore Full Stack App</h3>
+                <p class="text-slate-600 text-sm mb-4 leading-relaxed">A full-stack application using Angular and Spring Boot, with JWT auth and REST APIs. Containerized with Docker, deployed to AWS via automated CI/CD (GitHub Actions, Terraform).</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="tech-tag">Angular</span>
+                  <span class="tech-tag">Spring Boot</span>
+                  <span class="tech-tag">JWT</span>
+                  <span class="tech-tag">GitHub Actions</span>
+                  <span class="tech-tag">AWS</span>
+                  <span class="tech-tag">Terraform</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= GALLERY WORK ================= -->
+      <section id="gallery-work" class="py-24 bg-white">
+        <div class="container mx-auto max-w-6xl px-6">
+          <div class="text-center mb-16 fade-in">
+            <span class="section-eyebrow">Portfolio</span>
+            <h2 class="section-title">Project Galleries</h2>
+            <p class="section-subtitle mx-auto">Projects not currently deployed live. Click any card to view images.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Retail -->
+            <div @click="openModal(['assests/retail/1.png','assests/retail/2.png','assests/retail/3.png','assests/retail/4.png','assests/retail/5.png','assests/retail/6.png','assests/retail/7.png'])"
+                 class="project-card group fade-in cursor-pointer">
+              <div class="relative overflow-hidden rounded-t-2xl">
+                <img src="assests/retail/1.png" alt="Retail-Flow" class="project-image w-full h-56 object-cover" />
+                <span class="absolute top-4 right-4 px-3 py-1 bg-slate-900/70 backdrop-blur text-white text-xs font-semibold rounded-full">Gallery</span>
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold mb-2 text-slate-900 group-hover:text-indigo-600 transition">Retail-Flow: Intelligent Finance Hub</h3>
+                <p class="text-slate-600 text-sm mb-4 leading-relaxed">A scalable full-stack application with a clean layered architecture, CI/CD via GitHub Actions and infrastructure orchestrated by Terraform and Docker on AWS.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="tech-tag">Angular</span>
+                  <span class="tech-tag">Spring Boot</span>
+                  <span class="tech-tag">Terraform</span>
+                  <span class="tech-tag">AWS</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Coworking -->
+            <div @click="openModal(['assests/coworking space/1.png','assests/coworking space/2.png','assests/coworking space/3.png','assests/coworking space/4.png','assests/coworking space/5.png','assests/coworking space/6.png','assests/coworking space/7.png'])"
+                 class="project-card group fade-in delay-200 cursor-pointer">
+              <div class="relative overflow-hidden rounded-t-2xl">
+                <img src="assests/coworking space/1.png" alt="Coworking Space Platform" class="project-image w-full h-56 object-cover" />
+                <span class="absolute top-4 right-4 px-3 py-1 bg-slate-900/70 backdrop-blur text-white text-xs font-semibold rounded-full">Gallery</span>
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold mb-2 text-slate-900 group-hover:text-indigo-600 transition">Coworking Space Platform</h3>
+                <p class="text-slate-600 text-sm mb-4 leading-relaxed">A comprehensive platform for booking spaces with user roles, file management and an advanced statistics dashboard for administrators.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="tech-tag">Angular</span>
+                  <span class="tech-tag">Ng-Zorro</span>
+                  <span class="tech-tag">Spring Security</span>
+                  <span class="tech-tag">MySQL</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CONTACT ================= -->
+      <section id="contact" class="py-24 bg-slate-50">
+        <div class="container mx-auto max-w-5xl px-6">
+          <div class="text-center mb-12 fade-in">
+            <span class="section-eyebrow">Get in Touch</span>
+            <h2 class="section-title">Start a Conversation</h2>
+            <p class="section-subtitle mx-auto">I'm always excited to connect and discuss new ideas.</p>
+
+            <div class="inline-flex items-center gap-2 mt-5 bg-emerald-100 text-emerald-800 text-sm font-semibold px-4 py-1.5 rounded-full">
+              <span class="relative flex h-2.5 w-2.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
               </span>
               Currently available for new opportunities
             </div>
           </div>
-          <div class="bg-white p-8 md:p-12 lg:p-16 rounded-2xl shadow-2xl border border-gray-100">
+
+          <div class="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-slate-100">
             <div class="grid md:grid-cols-2 gap-12 items-center">
+              <!-- Illustration -->
               <div class="fade-in hidden md:block">
                 <div class="max-w-md mx-auto">
                   <svg class="w-full h-auto" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
@@ -273,12 +776,14 @@
                   </svg>
                 </div>
               </div>
+
+              <!-- Form -->
               <div class="fade-in delay-200">
-                <p class="text-gray-600 mb-6">
+                <p class="text-slate-600 mb-6 text-sm leading-relaxed">
                   Fill out the form below or reach out on other platforms. Let's see where our ideas can fly.
                 </p>
                 <form id="contactForm" action="mailto:ahmedmhiri2004@gmail.com" method="POST" enctype="text/plain" novalidate>
-                  <div class="space-y-6">
+                  <div class="space-y-5">
                     <div class="relative">
                       <input type="text" id="name" name="name" required class="form-input" placeholder=" " />
                       <label for="name" class="form-label">Name</label>
@@ -294,7 +799,7 @@
                       <label for="message" class="form-label">Message</label>
                       <p class="form-error" id="messageError">Please enter your message.</p>
                     </div>
-                    <button type="submit" id="submitBtn" class="w-full btn btn-primary flex items-center justify-center gap-2">
+                    <button type="submit" id="submitBtn" class="w-full btn btn-primary">
                       <span>Send Message</span>
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
@@ -304,18 +809,19 @@
                 </form>
               </div>
             </div>
-             <div class="text-center mt-16 border-t border-gray-200 pt-8">
-              <p class="text-gray-600 mb-4">Or, find me on other platforms:</p>
-              <div class="flex justify-center items-center gap-8 flex-wrap">
-                <a href="mailto:ahmedmhiri2004@gmail.com" class="contact-link group">
+
+            <div class="text-center mt-14 border-t border-slate-200 pt-8">
+              <p class="text-slate-500 text-sm mb-4">Or, find me on other platforms:</p>
+              <div class="flex justify-center items-center gap-4 flex-wrap">
+                <a href="mailto:ahmedmhiri2004@gmail.com" class="contact-link">
                   <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                   <span>Email</span>
                 </a>
-                <a href="https://github.com/Ahmed-Mhiri" target="_blank" rel="noopener noreferrer" class="contact-link group">
+                <a href="https://github.com/Ahmed-Mhiri" target="_blank" rel="noopener noreferrer" class="contact-link">
                   <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.11.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.236 1.84 1.236 1.07 1.835 2.81 1.305 3.495.997.11-.775.418-1.305.76-1.605-2.665-.3-5.466-1.335-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.536-1.523.117-3.176 0 0 1.01-.322 3.3 1.23a11.5 11.5 0 0 1 3-.405c1.02.005 2.04.138 3 .405 2.29-1.553 3.3-1.23 3.3-1.23.655 1.653.243 2.873.12 3.176.77.84 1.236 1.91 1.236 3.22 0 4.61-2.807 5.625-5.48 5.92.43.37.81 1.096.81 2.21 0 1.595-.015 2.88-.015 3.275 0 .32.215.694.825.576C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z" /></svg>
                   <span>GitHub</span>
                 </a>
-                <a href="https://www.linkedin.com/in/ahmed-mhiri-9330a4290/" target="_blank" rel="noopener noreferrer" class="contact-link group">
+                <a href="https://www.linkedin.com/in/ahmed-mhiri-9330a4290/" target="_blank" rel="noopener noreferrer" class="contact-link">
                   <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                   <span>LinkedIn</span>
                 </a>
@@ -326,45 +832,62 @@
       </section>
     </main>
 
-    <footer class="bg-gray-800 text-white py-6">
-      <div class="container mx-auto text-center"><p>&copy; 2025 Ahmed Mhiri. All rights reserved.</p></div>
+    <footer class="bg-slate-900 text-slate-300 py-8">
+      <div class="container mx-auto max-w-6xl px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-sm">&copy; 2025 Ahmed Mhiri. All rights reserved.</p>
+        <p class="text-xs text-slate-500">Built with <span class="text-indigo-400">Tailwind CSS</span> & <span class="text-indigo-400">Alpine.js</span></p>
+      </div>
     </footer>
-    
-    <button id="scrollTopBtn" aria-label="Scroll to top" title="Scroll to top">&#8679;</button>
-    
-    <div x-show="isModalOpen" 
-         x-transition:enter="transition ease-out duration-300" 
-         x-transition:enter-start="opacity-0" 
-         x-transition:enter-end="opacity-100" 
-         x-transition:leave="transition ease-in duration-300" 
-         x-transition:leave-start="opacity-100" 
-         x-transition:leave-end="opacity-0" 
-         class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[10000] p-4" 
-         style="display: none;">
-      
-      <div @click.away="closeModal()" class="relative bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh]">
-          
-          <button @click="closeModal()" class="absolute -top-3 -right-3 text-white bg-indigo-600 rounded-full p-2 z-50 hover:bg-indigo-700 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-white">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
-          </button>
-          
-          <div class="relative flex items-center justify-center p-2">
-              <img :src="currentProjectImages[currentImageIndex]" alt="Project Screenshot" class="rounded-md w-auto h-auto max-w-full max-h-[85vh] object-contain">
-              
-              <button @click.stop="prevImage()" class="absolute left-4 top-1/2 -translate-y-1/2 text-white bg-black bg-opacity-40 rounded-full p-2 focus:outline-none hover:bg-opacity-60 transition">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-              </button>
-              
-              <button @click.stop="nextImage()" class="absolute right-4 top-1/2 -translate-y-1/2 text-white bg-black bg-opacity-40 rounded-full p-2 focus:outline-none hover:bg-opacity-60 transition">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-              </button>
 
-              <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black bg-opacity-60 text-white text-sm px-3 py-1 rounded-full" x-text="`${currentImageIndex + 1} / ${currentProjectImages.length}`"></div>
-          </div>
+    <button id="scrollTopBtn" aria-label="Scroll to top" title="Scroll to top">&#8679;</button>
+
+    <!-- ================= MODAL ================= -->
+    <div x-show="isModalOpen"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-300"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         class="fixed inset-0 bg-slate-950/85 backdrop-blur-sm flex items-center justify-center z-[10000] p-4"
+         style="display: none;">
+
+      <div @click.away="closeModal()" class="relative bg-white rounded-2xl shadow-2xl w-full max-w-5xl max-h-[92vh]">
+        <button @click="closeModal()" class="absolute -top-3 -right-3 text-white bg-indigo-600 rounded-full p-2.5 z-50 hover:bg-indigo-700 transition shadow-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+
+        <div class="relative flex items-center justify-center p-2">
+          <img :src="currentProjectImages[currentImageIndex]" alt="Project Screenshot"
+               class="rounded-lg w-auto h-auto max-w-full max-h-[85vh] object-contain">
+
+          <button @click.stop="prevImage()" class="absolute left-3 md:left-4 top-1/2 -translate-y-1/2 text-white bg-slate-900/50 hover:bg-slate-900/75 rounded-full p-2.5 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" /></svg>
+          </button>
+
+          <button @click.stop="nextImage()" class="absolute right-3 md:right-4 top-1/2 -translate-y-1/2 text-white bg-slate-900/50 hover:bg-slate-900/75 rounded-full p-2.5 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" /></svg>
+          </button>
+
+          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-slate-900/75 text-white text-xs font-semibold px-3 py-1 rounded-full"
+               x-text="`${currentImageIndex + 1} / ${currentProjectImages.length}`"></div>
+        </div>
       </div>
     </div>
+
   </div>
-  
+
+  <script>
+    // Fallback IntersectionObserver for fade-in (if script.js isn't loaded)
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof IntersectionObserver === 'undefined') return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    });
+  </script>
+
   <script src="script.js"></script>
 
 </body>
